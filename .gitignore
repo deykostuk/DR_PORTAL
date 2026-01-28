@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+.streamlit/
+.env
+*.h5
+*.pth
+build_output.txt
+newtrainimg/
+resimges/
+.DS_Store
