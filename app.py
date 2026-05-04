@@ -33,8 +33,8 @@ CLASS_LABELS = {
 # --- DOWNLOAD MODELS FROM GOOGLE DRIVE ---
 @st.cache_resource
 def download_models():
-    mamba_drive_id = 'YOUR_MAMBA_MODEL_DRIVE_ID'  # REPLACE WITH YOUR ACTUAL ID
-    h5_drive_id = 'YOUR_H5_MODEL_DRIVE_ID'        # REPLACE WITH YOUR ACTUAL ID
+    mamba_drive_id = 'YOUR_ACTUAL_MAMBA_ID_HERE'  # <-- Replace with your actual Vision Mamba ID
+    h5_drive_id = 'YOUR_ACTUAL_H5_ID_HERE'        # <-- Replace with your actual h5 ID
     
     if not os.path.exists(MODEL_PATH) and mamba_drive_id != 'YOUR_MAMBA_MODEL_DRIVE_ID':
         with st.spinner("Downloading Vision Mamba model (one-time setup)..."):
