@@ -37,11 +37,11 @@ def download_models():
     
     if not os.path.exists(MODEL_PATH) and mamba_drive_id not in ['YOUR_MAMBA_MODEL_DRIVE_ID', 'YOUR_ACTUAL_MAMBA_ID_HERE']:
         with st.spinner("Downloading Vision Mamba model (one-time setup)..."):
-            gdown.download(id=mamba_drive_id, output=MODEL_PATH, quiet=False, fuzzy=True)
+            gdown.download(id=mamba_drive_id, output=MODEL_PATH, quiet=False)
             
     if not os.path.exists(EXPLAINABLE_MODEL_PATH) and h5_drive_id not in ['YOUR_H5_MODEL_DRIVE_ID', 'YOUR_ACTUAL_H5_ID_HERE']:
         with st.spinner("Downloading Explainable AI model (one-time setup)..."):
-            gdown.download(id=h5_drive_id, output=EXPLAINABLE_MODEL_PATH, quiet=False, fuzzy=True)
+            gdown.download(id=h5_drive_id, output=EXPLAINABLE_MODEL_PATH, quiet=False)
 
 # ==========================================
 # 1. VISION MAMBA GRAD-CAM CLASS
