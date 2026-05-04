@@ -19,7 +19,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 # --- CONFIGURATION ---
 MODEL_PATH = os.environ.get('MODEL_PATH', 'best_model_mamba_256_final.pth')
-EXPLAINABLE_MODEL_PATH = os.environ.get('EXPLAINABLE_MODEL_PATH', r'C:\Users\deyko\Desktop\dbrd\best_model_final.h5')
+EXPLAINABLE_MODEL_PATH = os.environ.get('EXPLAINABLE_MODEL_PATH', 'best_model_final.h5')
 IMG_SIZE = (256, 256)
 
 CLASS_LABELS = {
@@ -29,6 +29,20 @@ CLASS_LABELS = {
     3: "Severe DR",
     4: "Proliferative DR (Critical)"
 }
+
+# --- DOWNLOAD MODELS FROM GOOGLE DRIVE ---
+@st.cache_resource
+def download_models():
+    mamba_drive_id = 'YOUR_MAMBA_MODEL_DRIVE_ID'  # REPLACE WITH YOUR ACTUAL ID
+    h5_drive_id = 'YOUR_H5_MODEL_DRIVE_ID'        # REPLACE WITH YOUR ACTUAL ID
+    
+    if not os.path.exists(MODEL_PATH) and mamba_drive_id != 'YOUR_MAMBA_MODEL_DRIVE_ID':
+        with st.spinner("Downloading Vision Mamba model (one-time setup)..."):
+            gdown.download(id=mamba_drive_id, output=MODEL_PATH, quiet=False)
+            
+    if not os.path.exists(EXPLAINABLE_MODEL_PATH) and h5_drive_id != 'YOUR_H5_MODEL_DRIVE_ID':
+        with st.spinner("Downloading Explainable AI model (one-time setup)..."):
+            gdown.download(id=h5_drive_id, output=EXPLAINABLE_MODEL_PATH, quiet=False)
 
 # ==========================================
 # 1. VISION MAMBA GRAD-CAM CLASS
