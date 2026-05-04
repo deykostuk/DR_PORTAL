@@ -15,3 +15,10 @@ This project is configured for local execution using Streamlit and the included 
 
 ## Model file
 The app loads `best_model_mamba_256_final.pth` from the project root by default.
+
+## Explainable AI (XAI) Features
+This diagnostic portal provides interpretability for its predictions using two state-of-the-art XAI methods:
+- **Grad-CAM:** Extracts attention heatmaps directly from the Vision Mamba architecture to highlight the exact regions of the retinal image that most heavily influenced the model's grade prediction.
+- **LIME (Local Interpretable Model-agnostic Explanations):** Generates superpixel-based visual explanations using an external model to provide localized feature importance.
+
+*Note: The LIME explanations require a secondary Keras model to function. Ensure that the `EXPLAINABLE_MODEL_PATH` environment variable points to your `.h5` model file.*
