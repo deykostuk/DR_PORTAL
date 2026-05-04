@@ -22,3 +22,6 @@ This diagnostic portal provides interpretability for its predictions using two s
 - **LIME (Local Interpretable Model-agnostic Explanations):** Generates superpixel-based visual explanations using an external model to provide localized feature importance.
 
 *Note: The LIME explanations require a secondary Keras model to function. Ensure that the `EXPLAINABLE_MODEL_PATH` environment variable points to your `.h5` model file.*
+
+## Run Globally 
+https://drapp-5lcsddn6mukokfu5zppsbg.streamlit.app/
