@@ -1,0 +1,25 @@
+flowchart TD
+    Start([Start Streamlit App]) --> LoadConfig[config.py:\nLoad MODEL_PATH, IMG_SIZE, CLASS_LABELS]
+    LoadConfig --> LoadModel[model.py:\nLoad timm model, apply weights, return cached model]
+    LoadModel --> InitCAM[cam.py:\nInitialise MambaGradCAM with model feature stage]
+    InitCAM --> UI[app.py: Show UI - Upload Left & Right Eye Images]
+
+    UI --> UploadLeft[User uploads left eye image]
+    UI --> UploadRight[User uploads right eye image]
+
+    UploadLeft --> PreLeft[preprocess.process_image:\nConvert to RGB, resize, normalise -> tensor + original PIL]
+    UploadRight --> PreRight[preprocess.process_image:\nConvert to RGB, resize, normalise -> tensor + original PIL]
+
+    PreLeft --> InfLeft[inference.run_analysis:\n- Model forward pass -> logits\n- Softmax -> probs & predicted class\n- cam_tool.generate_heatmap -> heatmap\n- Create overlay on original image]
+    PreRight --> InfRight[inference.run_analysis:\n- Model forward pass -> logits\n- Softmax -> probs & predicted class\n- cam_tool.generate_heatmap -> heatmap\n- Create overlay on original image]
+
+    InfLeft --> ResultLeft[Structured results:\nprediction, probabilities, Grad-CAM overlay]
+    InfRight --> ResultRight[Structured results:\nprediction, probabilities, Grad-CAM overlay]
+
+    ResultLeft --> Display[app.py:\nDisplay left & right eye results]
+    ResultRight --> Display
+
+    Display --> ShowPred[Show Explainable AI prediction & class labels]
+    Display --> ShowGradCAM[Show Grad-CAM heatmap overlays width='stretch']
+    Display --> ShowRecommend[Show final recommendation]
+    ShowRecommend --> End([End])

@@ -1,0 +1,11 @@
+graph TB
+    User((User)) -->|Uploads images| UI[Streamlit UI]
+    UI -->|Sends raw image bytes| Preprocess[Image Preprocessing\n(normalisation, resizing)]
+    Preprocess -->|Tensor + original PIL| Model[DR Classification Model\n(mambaout_small, fine‑tuned)]
+    Model -->|Logits / probabilities| Inference
+    Model -->|Activations & gradients| GradCAM[Grad‑CAM Engine]
+    GradCAM -->|Heatmap| Overlay[Heatmap Overlay Generator]
+    Preprocess -->|Original image| Overlay
+    Overlay -->|Annotated image| UI
+    Inference -->|Class label, probabilities| UI
+    UI -->|Displays predictions + heatmaps| User
