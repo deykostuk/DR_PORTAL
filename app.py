@@ -6,6 +6,7 @@ import timm
 import cv2
 import os
 import importlib
+import gdown
 from torchvision import transforms
 from PIL import Image
 from lime import lime_image
@@ -342,6 +343,7 @@ def run_analysis(tensor, original_img, model, cam_tool, lime_wrapper=None, expla
 # ==========================================
 def main():
     st.set_page_config(page_title="Vim-DR Portal", layout="wide")
+    download_models()
     st.title("👁️ Vision Mamba DR Diagnostic Portal")
     st.markdown("**Explainable AI with Grad-CAM + LIME Interpretability**")
 
