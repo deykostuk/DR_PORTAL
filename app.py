@@ -31,18 +31,17 @@ CLASS_LABELS = {
 }
 
 # --- DOWNLOAD MODELS FROM GOOGLE DRIVE ---
-@st.cache_resource
 def download_models():
     mamba_drive_id = '1Oq7YnQFLninA2FPjVVYWXxIpmhaCifK9'  # <-- Replace with your actual Vision Mamba ID
     h5_drive_id = '1mfrKGhBNm7r_aWlH3V0XORUiQqccIt1v'        # <-- Replace with your actual h5 ID
     
     if not os.path.exists(MODEL_PATH) and mamba_drive_id not in ['YOUR_MAMBA_MODEL_DRIVE_ID', 'YOUR_ACTUAL_MAMBA_ID_HERE']:
         with st.spinner("Downloading Vision Mamba model (one-time setup)..."):
-            gdown.download(id=mamba_drive_id, output=MODEL_PATH, quiet=False)
+            gdown.download(id=mamba_drive_id, output=MODEL_PATH, quiet=False, fuzzy=True)
             
     if not os.path.exists(EXPLAINABLE_MODEL_PATH) and h5_drive_id not in ['YOUR_H5_MODEL_DRIVE_ID', 'YOUR_ACTUAL_H5_ID_HERE']:
         with st.spinner("Downloading Explainable AI model (one-time setup)..."):
-            gdown.download(id=h5_drive_id, output=EXPLAINABLE_MODEL_PATH, quiet=False)
+            gdown.download(id=h5_drive_id, output=EXPLAINABLE_MODEL_PATH, quiet=False, fuzzy=True)
 
 # ==========================================
 # 1. VISION MAMBA GRAD-CAM CLASS
